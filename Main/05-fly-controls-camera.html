@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Example 09.05 - Fly controls </title>
+    <title> Fly controls </title>
     <script type="text/javascript" src="../libs/three.js"></script>
     <script type="text/javascript" src="../libs/OBJLoader.js"></script>
     <script type="text/javascript" src="../libs/MTLLoader.js"></script>
@@ -57,17 +57,19 @@
         // position and point the camera to the center of the scene
         camera.position.x = 100;
         camera.position.y = 100;
-        camera.position.z = 300;
+        camera.position.z = -300;
         camera.lookAt(new THREE.Vector3(0, 0, 0));
+   
 
-
+        //declares object flycontrol as camera
         var flyControls = new THREE.FlyControls(camera);
 
         flyControls.movementSpeed = 25;
         flyControls.domElement = document.querySelector("#WebGL-output");
         flyControls.rollSpeed = Math.PI / 24;
-        flyControls.autoForward = true;
+        flyControls.autoForward = false;
         flyControls.dragToLook = false;
+        
 
         var ambientLight = new THREE.AmbientLight(0x383838);
         scene.add(ambientLight);
@@ -75,7 +77,7 @@
         // add spotlight for the shadows
         var spotLight = new THREE.SpotLight(0xffffff);
         spotLight.position.set(100, 140, 130);
-        spotLight.intensity = 2;
+        spotLight.intensity = 1;
         scene.add(spotLight);
 
         // add the output of the renderer to the html element
@@ -105,9 +107,9 @@
 
 
         var texture = THREE.ImageUtils.loadTexture('../assets/textures/Metro01.JPG');
-        //texture.wrapS = texture.wrapT = THREE.MirroredRepeatWrapping;
+      //  texture.wrapS = texture.wrapT = THREE.MirroredRepeatWrapping;
         loader.load('../assets/models/city.obj', '../assets/models/city.mtl', load);
-        //texture.repeat.set( 1 , 1);
+      //  texture.repeat.set( 1 , 1);
 
 
         function setCamControls() {
