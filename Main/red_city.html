@@ -90,18 +90,50 @@
 
         
 
-        // add spotlight for the shadows
+        // add main name spotlight
         var spotLight = new THREE.SpotLight(0xffffff);
         spotLight.position.set(100 ,300, -300);
         spotLight.intensity = 1;
         scene.add(spotLight);
         scene.fog = new THREE.Fog(0xff0000, 100, 1000);
+        spotLight.target.updateMatrixWorld();
 
-                // add spotlight for the shadows
-                var spotLight = new THREE.SpotLight(0xff0000);
-        spotLight.position.set(200 ,200, 500);
-        spotLight.intensity = 2;
-        scene.add(spotLight);
+        // add red spotlight
+        var spotLight2 = new THREE.SpotLight(0xff0000);
+        spotLight2.position.set(200 ,200, 500);
+        spotLight2.intensity = 2;
+        scene.add(spotLight2);
+        spotLight2.target.updateMatrixWorld();
+
+        // add spotlight hobbies
+        var spotLight3 = new THREE.SpotLight(0xffffff,3.0, 300, Math.PI/9.0, 1, 0.5);
+        spotLight3.position.set(320 ,90, -20);
+        spotLight3.target.position.set(600,0,0);
+        spotLight3.intensity = 3;
+        scene.add(spotLight3);
+        scene.add(spotLight3.target);
+        spotLight3.target.updateMatrixWorld();
+        
+        // add spotlight hobbies
+        var spotLight4 = new THREE.SpotLight(0xffffff,3.0, 300, Math.PI/9.0, 1, 0.5);
+        spotLight4.position.set(320 ,90, -220);
+        spotLight4.target.position.set(600,0,-150);
+        spotLight4.intensity = 3;
+        scene.add(spotLight4);
+        scene.add(spotLight4.target);
+        spotLight4.target.updateMatrixWorld();
+
+
+        //for testing purposes
+        helper4 = new THREE.SpotLightHelper(spotLight2);
+        helper3 = new THREE.SpotLightHelper(spotLight);
+        helper2 = new THREE.SpotLightHelper(spotLight4);
+        helper = new THREE.SpotLightHelper(spotLight3);
+        scene.add(helper);
+        scene.add(helper2);
+        scene.add(helper3);
+        scene.add(helper4);
+
 
         // add the output of the renderer to the html element
         document.getElementById("WebGL-output").appendChild(webGLRenderer.domElement);
