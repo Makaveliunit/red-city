@@ -4,11 +4,11 @@
 
 <br>
 
-I love cities, the ccolor red and coding combine the three and you get this made with THREE.js :)
+I love cities, the color red and coding combine the three and you get this made with THREE.js :)
 
 ## First Glance
 
-![City](https://https://github.com/Makaveliunit/red-city/cityprev.PNG?raw=true)
+![City](https://github.com/Makaveliunit/red-city/blob/Features/cityprev.png?raw=true)
 
 ## Made with
   - [HTML & Javascript](https://www.javascript.com/)
