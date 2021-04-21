@@ -91,11 +91,10 @@
         
 
         // add main name spotlight
-        var spotLight = new THREE.SpotLight(0xffffff);
-        spotLight.position.set(100 ,300, -300);
-        spotLight.intensity = 1;
+        var spotLight = new THREE.SpotLight(0xffffff,1.0, 2e400, Math.PI/25, 1, 0.5);
+        spotLight.position.set(0 ,1000, -400);
+        spotLight.intensity = 1.7;
         scene.add(spotLight);
-        scene.fog = new THREE.Fog(0xff0000, 100, 1000);
         spotLight.target.updateMatrixWorld();
 
         // add red spotlight
@@ -133,6 +132,10 @@
         scene.add(helper2);
         scene.add(helper3);
         scene.add(helper4);
+
+
+        //fog
+        scene.fog = new THREE.Fog(0xff0000, 100, 1000);
 
 
         // add the output of the renderer to the html element
