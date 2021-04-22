@@ -107,7 +107,7 @@
         // add spotlight hobbies
         var spotLight3 = new THREE.SpotLight(0xffffff,3.0, 300, Math.PI/9.0, 1, 0.5);
         spotLight3.position.set(320 ,90, -20);
-        spotLight3.target.position.set(600,0,0);
+        spotLight3.target.position.set(600,0,-20);
         spotLight3.intensity = 3;
         scene.add(spotLight3);
         scene.add(spotLight3.target);
@@ -160,8 +160,6 @@
 
         var loader = new THREE.OBJMTLLoader();
         var load = function (object) {
-      //      var scale = chroma.scale(['black', 'red', 'black']);
-      //      setRandomColors(object, scale);
             mesh = object;
             scene.add(mesh);
 
