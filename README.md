@@ -8,7 +8,7 @@ I love cities, the color red and coding combine the three and you get this made 
 
 ## First Glance
 
-![City](https://github.com/Makaveliunit/red-city/blob/Features/cityprev.png?raw=true)
+![City](https://github.com/Makaveliunit/red-city/blob/main/cityprev.png?raw=true)
 
 ## Made with
   - [HTML & Javascript](https://www.javascript.com/)
