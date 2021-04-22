@@ -29,15 +29,15 @@
 
         // position and point the camera to the center of the scene
         camera.position.x = 0;
-        camera.position.y = 10;
-        camera.position.z = -380;
+        camera.position.y = 70;
+        camera.position.z = -430;
         camera.lookAt(new THREE.Vector3(0, 60, 0));
    
 
         //declares object flycontrol as camera
         var flyControls = new THREE.FlyControls(camera);
 
-        flyControls.movementSpeed = 40;
+        flyControls.movementSpeed = 66;
         flyControls.domElement = document.querySelector("#WebGL-output");
         flyControls.rollSpeed = Math.PI / 5;
         flyControls.autoForward = false;
