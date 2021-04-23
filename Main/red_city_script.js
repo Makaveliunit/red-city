@@ -15,6 +15,62 @@
         // create a scene, that will hold all our elements such as objects, cameras and lights.
         var scene = new THREE.Scene();
 
+
+        var loader = new THREE.OBJMTLLoader();
+        var load = function (object) {
+            mesh = object;
+            scene.add(mesh);
+
+        };
+
+
+        var i = 0;
+       loader.load('../assets/models/city.obj',
+        '../assets/models/city.mtl',
+        function ( object ) {
+
+            scene.add( object );
+    
+        },
+        
+        //disable mouse control
+        //loading = loading %
+        // called when loading is in progresses     
+        function ( xhr ) {
+            var loading =  (xhr.loaded / xhr.total * 100);
+            if (i == 0)
+            loading = 0;
+            console.log(loading + '% loaded' + '   ' + i );
+            i += 1;
+
+            
+
+
+
+            if( loading  === 100) 
+            {
+            // continue
+            //enable control    
+
+
+            
+            }
+        },
+      
+      
+        // called when loading has errors
+        function ( error ) {
+    
+            console.log( 'An error happened' );
+    
+        },
+        
+        
+        load);
+
+
+
+
         // create a camera, which defines where we're looking at.
         var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 
@@ -52,7 +108,7 @@
 		mediaElement.volume = 0.1;
         
         //enable for music
-  //      mediaElement.play();
+        mediaElement.play();
 
         
 
@@ -118,7 +174,7 @@
 
         // call the render function
         var step = 0;
-
+        
 
  
 
@@ -133,16 +189,9 @@
         var gui = new dat.GUI();
         var mesh;
 
-        var loader = new THREE.OBJMTLLoader();
-        var load = function (object) {
-            mesh = object;
-            scene.add(mesh);
-
-        };
 
 
 
-       loader.load('../assets/models/city.obj', '../assets/models/city.mtl', load);
 
 
         function setCamControls() {
@@ -176,6 +225,11 @@
             }
         }
 
+        function animate() {
+            
+        }
+
+
 
         function render() {
             stats.update();
@@ -195,6 +249,9 @@
 
             webGLRenderer.render(scene, camera)
         }
+
+
+
 
         function initStats() {
 
