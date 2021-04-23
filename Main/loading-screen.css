@@ -1,6 +1,6 @@
 .container2 {
 	margin: 0px;
-	background: radial-gradient(#CECECE, #fff);
+	background: radial-gradient(#000000, rgb(235, 0, 0));
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -10,7 +10,7 @@
 	width: 350px;
 	height: 350px;
 	border-radius: 100%;
-	background: linear-gradient(165deg, rgba(255,255,255,1) 0%, rgb(220, 220, 220) 40%, rgb(170, 170, 170) 98%, rgb(10, 10, 10) 100%);
+	background: linear-gradient(165deg, rgb(250, 0, 0) 0%, rgb(250, 0, 0) 40%, rgb(56, 0, 0) 98%, rgb(10, 10, 10) 100%);
 	position: absolute;
 }
 .loader {
@@ -26,15 +26,15 @@
 	border-bottom: 0 solid #ffffff05;
 	
 	box-shadow: 
-		0 -10px 20px 20px #ffffff40 inset,
-		0 -5px 15px 10px #ffffff50 inset,
-		0 -2px 5px #ffffff80 inset,
-		0 -3px 2px #ffffffBB inset,
-		0 2px 0px #ffffff,
-		0 2px 3px #ffffff,
-		0 5px 5px #ffffff90,
-		0 10px 15px #ffffff60,
-		0 10px 20px 20px #ffffff40;
+		0 -10px 20px 20px #4b000040 inset,
+		0 -5px 15px 10px #5800008a inset,
+		0 -2px 5px #5a000080 inset,
+		0 -3px 2px #8b0000bb inset,
+		0 2px 0px #ff0404,
+		0 2px 3px #ff0000,
+		0 5px 5px #580000a8,
+		0 10px 15px #46000083,
+		0 10px 20px 20px #ff1c1c57;
 	filter: blur(3px);
 	animation: 2s rotate linear infinite;
 }
@@ -42,5 +42,6 @@
 @keyframes rotate {
 	100% {
 		transform: rotate(360deg)
+
 	}
 }
