@@ -7,7 +7,7 @@ a.button1{
     position: relative;
     display:inline-block;
     padding:0.35em 1.2em;
-    border:0.14em solid #FFFFFF;
+    border:0.20em solid #FFFFFF;
     margin:0 0.3em 0.3em 0;
     border-radius:0.12em;
     box-sizing: border-box;
@@ -22,11 +22,13 @@ a.button1{
     height: 10%;
     margin-left: 44%;
     }
+
     a.button1:hover{
     color:rgb(255,10,0);
     background-color:#FFFFFF;
     }
-    @media all and (max-width:30em){
+
+@media all and (max-width:30em){
      a.button1{
     display:block;
     margin:0.4em auto;
@@ -34,10 +36,22 @@ a.button1{
     }
 
 
+.container{
+    width: 1900px;
+    height: 1000px;
+    padding: 20%;
+}
 
-.intro{      
-        margin-top: 9%;
-        width: 100%;
+.intro{    
+    width: 1000px;
+    height: 350px; 
+    background: url("imgs/skyline-pattern.png") no-repeat;
+}
+
+.intro:hover{
+    transition: all 0.6s;
+    background: url("imgs/skyline-pattern-hover.png") no-repeat;
+
 }
 
 .im{

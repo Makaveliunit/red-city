@@ -16,6 +16,7 @@
         var scene = new THREE.Scene();
 
 
+
         var loader = new THREE.OBJMTLLoader();
         var load = function (object) {
             mesh = object;
@@ -97,7 +98,7 @@
         flyControls.domElement = document.querySelector("#WebGL-output");
         flyControls.rollSpeed = Math.PI / 5;
         flyControls.autoForward = false;
-        flyControls.dragToLook = false;
+        flyControls.dragToLook = true;
         
 
         var fftSize = 128;
@@ -105,7 +106,7 @@
         var audio = new THREE.Audio( listener );
         var mediaElement = new Audio( '../sounds/dynatron.mp3' );
         mediaElement.loop = true;
-		mediaElement.volume = 0.1;
+		mediaElement.volume = 0.06;
         
         //enable for music
         mediaElement.play();
