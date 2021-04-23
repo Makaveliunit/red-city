@@ -18,7 +18,7 @@
     <script type="text/javascript" src="../libs/dat.gui.js"></script>
     <script type="text/javascript" src="../libs/chroma.js"></script>
     <script type="text/javascript" src="../libs/FlyControls.js"></script>
-
+    <link rel="stylesheet" href="loading-screen.css">
 
     <style>
         body {
@@ -28,12 +28,25 @@
         }
     </style>
 </head>
+
 <body>
-<div id="Stats-output">
+    <!--Div which triggers the loading block-->
+    <div class="container2" id="loading-output">
+    <div class ="container" id=>
+        <div class = "loader" >
+        </div>
+    </div>
 </div>
-<!-- Div which will hold the Output -->
-<div id="WebGL-output">
-</div>
-<script src="red_city_script.js"></script>
+    <!-- Div which prints the control for the user-->
+    <div id="control-output">
+    </div>
+    <div id="Stats-output">
+    </div>
+    <!-- Div which will hold the Output -->
+    <div id="WebGL-output">
+    </div>
+    <script src="red_city_script.js">
+    </script>
 </body>
+
 </html>

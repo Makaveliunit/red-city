@@ -7,10 +7,23 @@
 // once everything is loaded, we run our Three.js stuff.
     function init() {
         
+        //whether mobile or not
+        const isMobile = (window.orientation !== undefined);
 
         var clock = new THREE.Clock();
         
+        var elem = document.getElementById("loading-output");
+        
+        //loading is true by default
+        var loading = 1;
+
+        // enables the loadings screen
+        loadingScreen(loading);
+
+        
+        var control = initControl();
         var stats = initStats();
+      
 
         // create a scene, that will hold all our elements such as objects, cameras and lights.
         var scene = new THREE.Scene();
@@ -51,10 +64,13 @@
             if( loading  === 100) 
             {
             // continue
-            //enable control    
-
-
+            //enable control
             
+            //loading has finished
+            
+            //disables the loading screen
+            loading = 0;
+            loadingScreen(loading);              
             }
         },
       
@@ -176,8 +192,11 @@
         // call the render function
         var step = 0;
         
+       
 
- 
+
+
+  
 
 
         // setup the control gui
@@ -187,7 +206,7 @@
 
         };
 
-        var gui = new dat.GUI();
+       
         var mesh;
 
 
@@ -266,8 +285,42 @@
 
             document.getElementById("Stats-output").appendChild(stats.domElement);
 
+
             return stats;
         }
+
+
+        //controls returned to the user
+        function initControl() {
+    
+            
+            document.getElementById("control-output").style.position = 'absolute';
+            document.getElementById("control-output").innerHTML = 'MOVE: (w)(a)(s)(d) &nbsp;&nbsp;&nbsp;&nbsp; ELEVATE: (r)(f) &nbsp;&nbsp;&nbsp;&nbsp; TILT: (e)(q)';
+            document.getElementById("control-output").style.color = 'transparent';
+            document.getElementById("control-output").style.fontFamily = 'Geneva, Verdana, sans-serif';
+            document.getElementById("control-output").style.fontWeight = 'bold';       
+            document.getElementById("control-output").style.marginLeft = '40%'; 
+
+            document.getElementById("control-output").style.alignContent = 'center';
+            document.getElementById("control-output").style.top = '0px';
+
+        }
+
+
+
+        //here is gonna be the loading screen
+        function loadingScreen( loading ) {
+            
+           //if loading is over kill div
+            if( loading === 0) {
+
+                elem.parentNode.removeChild(elem);
+                document.getElementById("control-output").style.color = 'black';
+    
+                }
+
+        }
+  
     }
 
 
