@@ -64,7 +64,7 @@
 
 
 
-            if( loading  === 100) 
+            if( loading > 97) 
             {
             // continue
             //enable control
