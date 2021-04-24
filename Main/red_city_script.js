@@ -55,6 +55,7 @@
             if (i == 0)
             loading = 0;
             console.log(loading + '% loaded' + '   ' + i );
+            console.log(xhr.loaded + '  ' + xhr.total );
             i += 1;
 
             
