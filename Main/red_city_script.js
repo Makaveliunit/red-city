@@ -5,7 +5,7 @@
         var elem = document.getElementById("loading-output");
 
 
-       
+       var lock = false;
        
 
    init();
@@ -70,9 +70,11 @@
 
 
 
-            if( loading_pc == 100) 
+            if( loading_pc > 99 && lock == false) 
             {
-             
+             lock = true;
+             console.log(lock);
+
             // continue
             //enable control
             
