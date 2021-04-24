@@ -59,18 +59,19 @@
         //loading = loading %
         // called when loading is in progresses     
         function ( xhr ) {
-            var loading_pc =  (xhr.loaded / xhr.total * 100);
+            var total_sz = 52739112;
+            var loading_pc =  (xhr.loaded / total_sz * 100);
             if (i == 0)
             loading_pc = 0;
             console.log(loading_pc + '% loaded' + '   ' + i );
-            console.log(xhr.loaded + '  ' +  xhr.total );
+            console.log(xhr.loaded + '  ' +  total_sz );
             i += 1;
 
             
 
 
 
-            if( loading_pc > 99 && lock == false) 
+            if( loading_pc > 100 && lock == false) 
             {
              lock = true;
              console.log(lock);
