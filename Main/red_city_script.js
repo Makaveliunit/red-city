@@ -55,7 +55,7 @@ var elem = document.getElementById("loading-output");
             var total_sz = 52739112;
             var loading_pc =  (xhr.loaded / total_sz * 100);
             if (i == 0)
-            loading = 0;
+            loading_pc = 0;
             console.log(loading_pc + '% loaded' + '   ' + i );
             console.log(xhr.loaded + '  ' +  total_sz );
             i += 1;
