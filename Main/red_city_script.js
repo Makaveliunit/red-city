@@ -101,7 +101,17 @@ var elem = document.getElementById("loading-output");
         webGLRenderer.setSize(window.innerWidth, window.innerHeight);
         webGLRenderer.shadowMapEnabled = true;
         
-
+        //window resize
+        window.addEventListener( 'resize', onWindowResize, false);
+        
+        function onWindowResize(){
+        
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        
+            webGLRenderer.setSize( window.innerWidth, window.innerHeight );
+        
+        }
 
         // position and point the camera to the center of the scene
         camera.position.x = 0;
@@ -325,13 +335,22 @@ var elem = document.getElementById("loading-output");
                     console.log('you never saw this')
                 }
 
-
+                if(isMobile == false)
                 document.getElementById("control-output").style.color = 'black';
-    
-                }
+                
+               
+            
+            }
 
         }
-  
+
+        
+        
+
+
+
+
+
     }
 
 
