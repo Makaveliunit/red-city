@@ -47,11 +47,12 @@
     
         },
         
+        //total_sz = size of .obj
         //disable mouse control
         //loading = loading %
         // called when loading is in progresses     
         function ( xhr ) {
-            var total_sz = 54739112;
+            var total_sz = 52739112;
             var loading =  (xhr.loaded / total_sz * 100);
             if (i == 0)
             loading = 0;
