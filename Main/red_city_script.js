@@ -1,5 +1,5 @@
 // author: Rami Abboud
-
+var elem = document.getElementById("loading-output");
 
    init();
    
@@ -12,7 +12,7 @@
 
         var clock = new THREE.Clock();
         
-        var elem = document.getElementById("loading-output");
+
         
         //loading is true by default
         var loading = 1;
@@ -53,10 +53,10 @@
         // called when loading is in progresses     
         function ( xhr ) {
             var total_sz = 52739112;
-            var loading =  (xhr.loaded / total_sz * 100);
+            var loading_pc =  (xhr.loaded / total_sz * 100);
             if (i == 0)
             loading = 0;
-            console.log(loading + '% loaded' + '   ' + i );
+            console.log(loading_pc + '% loaded' + '   ' + i );
             console.log(xhr.loaded + '  ' +  total_sz );
             i += 1;
 
@@ -64,7 +64,7 @@
 
 
 
-            if( loading > 97) 
+            if( loading_pc > 97) 
             {
             // continue
             //enable control
