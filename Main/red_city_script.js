@@ -317,7 +317,14 @@ var elem = document.getElementById("loading-output");
            //if loading is over kill div
             if( loading === 0) {
 
+                try {
                 elem.parentNode.removeChild(elem);
+                }
+                catch(err) {
+                    console.log('you never saw this')
+                }
+
+
                 document.getElementById("control-output").style.color = 'black';
     
                 }
