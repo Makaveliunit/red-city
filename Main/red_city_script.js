@@ -4,7 +4,7 @@
         //launches the loading
         var elem = document.getElementById("loading-output");
 
-
+        // locks loading when reached 100
        var lock = false;
        
 
@@ -131,7 +131,8 @@
         camera.lookAt(new THREE.Vector3(0, 60, 0));
    
 
-        //declares object flycontrol as camera
+        //declares object flycontrol as camera for Windows
+        if (isMobile == false) {
         var flyControls = new THREE.FlyControls(camera);
 
         flyControls.movementSpeed = 66;
@@ -139,11 +140,21 @@
         flyControls.rollSpeed = Math.PI / 5;
         flyControls.autoForward = false;
         flyControls.dragToLook = true;
-        
+        }
 
-        var fftSize = 128;
-        var listener = new THREE.AudioListener();
-        var audio = new THREE.Audio( listener );
+        //mobile controls
+        if (isMobile == true) {
+            var flyControls = new THREE.FlyControls(camera);
+
+            flyControls.movementSpeed = 40;
+            flyControls.domElement = document.querySelector("#WebGL-output");
+            flyControls.rollSpeed = Math.PI / 12;
+            flyControls.autoForward = true;
+            flyControls.dragToLook = false;
+        }
+
+        
+        // sets music
         var mediaElement = new Audio( '../sounds/dynatron.mp3' );
         mediaElement.loop = true;
 		mediaElement.volume = 0.06;
@@ -209,40 +220,12 @@
         //fog
         scene.fog = new THREE.Fog(0xff0000, 100, 1000);
 
-
         // add the output of the renderer to the html element
         document.getElementById("WebGL-output").appendChild(webGLRenderer.domElement);
 
-        // call the render function
-        var step = 0;
-        
-       
-
-
-
-  
-
-
-        // setup the control gui
-        var controls = new function () {
-            // we need the first child, since it's a multimaterial
-
-
-        };
 
        
         var mesh;
-
-
-
-
-
-
-        function setCamControls() {
-
-        }
-
-
 
 
         render();
@@ -269,6 +252,7 @@
             }
         }
 
+
         function animate() {
             
         }
@@ -283,9 +267,12 @@
                 //   mesh.rotation.y+=0.006;
             }
 
-
+            if(isMobile == false || isMobile == true) {
             flyControls.update(delta);
+            }
+            
             webGLRenderer.clear();
+
             // render using requestAnimationFrame
             requestAnimationFrame(render);
 
