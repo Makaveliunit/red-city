@@ -298,9 +298,10 @@ var elem = document.getElementById("loading-output");
     
             
             document.getElementById("control-output").style.position = 'absolute';
-            document.getElementById("control-output").innerHTML = 'MOVE: (w)(a)(s)(d) &nbsp;&nbsp;&nbsp;&nbsp; ELEVATE: (r)(f) &nbsp;&nbsp;&nbsp;&nbsp; TILT: (e)(q)';
+            document.getElementById("control-output").innerHTML = 'Move: [w][a][s][d] &nbsp;&nbsp;&nbsp;&nbsp; Elevation: [r][f] &nbsp;&nbsp;&nbsp;&nbsp; Tilt: [e][q]';
             document.getElementById("control-output").style.color = 'transparent';
-            document.getElementById("control-output").style.fontFamily = 'Geneva, Verdana, sans-serif';
+            document.getElementById("control-output").style.fontFamily = 'Monospace';
+            document.getElementById("control-output").style.fontSize = '16px';
             document.getElementById("control-output").style.fontWeight = 'bold';       
             document.getElementById("control-output").style.marginLeft = '40%'; 
 
