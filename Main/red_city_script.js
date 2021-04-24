@@ -51,11 +51,12 @@
         //loading = loading %
         // called when loading is in progresses     
         function ( xhr ) {
-            var loading =  (xhr.loaded / xhr.total * 100);
+            var total_sz = 54739112;
+            var loading =  (xhr.loaded / total_sz * 100);
             if (i == 0)
             loading = 0;
             console.log(loading + '% loaded' + '   ' + i );
-            console.log(xhr.loaded + '  ' + xhr.total );
+            console.log(xhr.loaded + '  ' +  total_sz );
             i += 1;
 
             
