@@ -349,7 +349,7 @@ function init() {
 
         document.getElementById("control-output").style.position = 'absolute';
        
-        document.getElementById("control-output").style.color = 'black';
+        document.getElementById("control-output").style.color = 'transparent';
         document.getElementById("control-output").style.fontFamily = 'Monospace';
         document.getElementById("control-output").style.fontSize = '16px';
         document.getElementById("control-output").style.fontWeight = 'bold';
@@ -380,7 +380,7 @@ function init() {
         if (loading == 0) {
 
             elem.parentNode.removeChild(elem);
-
+            document.getElementById("control-output").style.color = 'black';
         }
 
     }
