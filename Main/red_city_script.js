@@ -368,6 +368,8 @@ function init() {
             document.getElementById("control-output").style.marginLeft = '25%';
             document.getElementById("control-output").style.fontSize = '12px';
             document.getElementById("control-output").innerHTML = '[Long touch] Auto Forward: ' + AutoF + '<br>           Touch to auto-turn.';
+            if ( loading == 0 )
+            document.getElementById("control-output").style.color = 'black';
         }
     }
 
