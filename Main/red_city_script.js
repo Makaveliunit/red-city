@@ -207,7 +207,8 @@ function init() {
 // EVERYTHING BELOW HERE ARE EXTRA MESH //////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 var step = 0;
-step_light9 = 0;
+var step_light9 = 0;
+var step_light = 0;
 
 
     var sphereGeometry = new THREE.SphereGeometry(3, 20, 20);
@@ -231,8 +232,10 @@ step_light9 = 0;
     // add main name spotlight
     var spotLight = new THREE.SpotLight(0xffffff, 1.0, 2e400, Math.PI / 25, 1, 0.5);
     spotLight.position.set(0, 1000, -400);
-    spotLight.intensity = 1.7;
+    spotLight.target.position.set(0, 0, 0);
+    spotLight.intensity = 2.3;
     scene.add(spotLight);
+    scene.add(spotLight.target);
     spotLight.target.updateMatrixWorld();
 
     // add red spotlight
@@ -346,10 +349,10 @@ step_light9 = 0;
             if (object instanceof THREE.Mesh) {
                 object.material.showShadow = true;
          //       object.material.color = new THREE.Color(scale(Math.random()).hex());
-                if (object.material.name == "wall") {
+                if (object.material.name == "building_117") {
             //        object.material.emissive = new THREE.Color(0x444444);
-               //     object.material.transparent = true;
-              //      object.material.opacity = 0.5;
+                    object.material.transparent = true;
+                    object.material.opacity = 0.5;
                     object.material.castShadow = true;
                     object.material.receiveShadow = true;
                 }
@@ -388,6 +391,10 @@ step_light9 = 0;
               step_light9 += 0.0009;
               spotLight9.target.position.y = 230 + ( 230 * Math.sin(step_light9));
 
+            //name building target moving
+              step_light += 0.002;
+              spotLight.target.position.z = 0 + ( 90 * Math.sin(step_light));
+              spotLight.target.position.x = 0 + ( 90 * Math.cos(step_light));
 
         requestAnimationFrame(render);
 
