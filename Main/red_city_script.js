@@ -204,16 +204,16 @@ function init() {
     mediaElement.play();
 
 
-// EVERYTHING BELOW HERE ARE EXTRA MESH //////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////
-var step = 0;
-var step_light9 = 0;
-var step_light = 0;
-var step_light10 = 0;
+    // EVERYTHING BELOW HERE ARE EXTRA MESH //////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////
+    var step = 0;
+    var step_light9 = 0;
+    var step_light = 0;
+    var step_light10 = 0;
 
 
     var sphereGeometry = new THREE.SphereGeometry(3, 20, 20);
-    var sphereMaterial = new THREE.MeshLambertMaterial({color: 0xff0000});
+    var sphereMaterial = new THREE.MeshLambertMaterial({ color: 0xff0000 });
     var sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 
     // position the sphere
@@ -225,9 +225,9 @@ var step_light10 = 0;
     // add the sphere to the scene
     scene.add(sphere);
 
- 
-///////////////////////////////////////////////////////////////////////////
-/////////////////////ANIMATION STOPS HERE////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////////
+    /////////////////////ANIMATION STOPS HERE////////////////////////////////
 
 
     // add main name spotlight
@@ -301,16 +301,16 @@ var step_light10 = 0;
     spotLight8.target.updateMatrixWorld();
 
 
-        // add ANIMATED spotlight hobbies
-        var spotLight10 = new THREE.SpotLight(0xffffff, 3, 600, 0.15);
-        spotLight10.position.set(320, 90, -200);
-        spotLight10.target.position.set(600, 120, 240);
-        scene.add(spotLight10);
-        scene.add(spotLight10.target);
-        spotLight10.castShadow = true;
-        spotLight10.target.updateMatrixWorld();
+    // add ANIMATED spotlight hobbies
+    var spotLight10 = new THREE.SpotLight(0xffffff, 3, 600, 0.15);
+    spotLight10.position.set(320, 90, -200);
+    spotLight10.target.position.set(600, 120, 240);
+    scene.add(spotLight10);
+    scene.add(spotLight10.target);
+    spotLight10.castShadow = true;
+    spotLight10.target.updateMatrixWorld();
 
-//-------------------------------------------------------
+    //-------------------------------------------------------
     // add ANIMATED spotlight project
     var spotLight9 = new THREE.SpotLight(0xffffff, 6, 800, 0.5);
     spotLight9.position.set(0, 350, 0);
@@ -319,19 +319,19 @@ var step_light10 = 0;
     scene.add(spotLight9.target);
     spotLight9.target.updateMatrixWorld();
 
-   helper = new THREE.SpotLightHelper(spotLight9);
-   scene.add(helper);
+    helper = new THREE.SpotLightHelper(spotLight9);
+    scene.add(helper);
 
 
     //for testing purposes
-   // helper4 = new THREE.SpotLightHelper(spotLight2);
-  //  helper3 = new THREE.SpotLightHelper(spotLight);
-   // helper2 = new THREE.SpotLightHelper(spotLight4);
-   // helper = new THREE.SpotLightHelper(spotLight3);
-  //  scene.add(helper);
-  //  scene.add(helper2);
-  //  scene.add(helper3);
-  //  scene.add(helper4);
+    // helper4 = new THREE.SpotLightHelper(spotLight2);
+    //  helper3 = new THREE.SpotLightHelper(spotLight);
+    // helper2 = new THREE.SpotLightHelper(spotLight4);
+    // helper = new THREE.SpotLightHelper(spotLight3);
+    //  scene.add(helper);
+    //  scene.add(helper2);
+    //  scene.add(helper3);
+    //  scene.add(helper4);
 
 
     //fog
@@ -342,8 +342,14 @@ var step_light10 = 0;
 
 
 
+    //chair pivot point
+    var pivot = new THREE.Object3D();
+    pivot.position.x = 516.5;
+    pivot.position.y = 15;
+    pivot.position.z = -222.4;
 
- 
+    var pc_chair;
+
 
     render();
 
@@ -359,21 +365,30 @@ var step_light10 = 0;
             // no children assume contains a mesh
             if (object instanceof THREE.Mesh) {
                 object.material.showShadow = true;
-         //       object.material.color = new THREE.Color(scale(Math.random()).hex());
+                //       object.material.color = new THREE.Color(scale(Math.random()).hex());
                 if (object.material.name == "building_117") {
-            //        object.material.emissive = new THREE.Color(0x444444);
+                    //        object.material.emissive = new THREE.Color(0x444444);
                     object.material.transparent = true;
                     object.material.opacity = 0.5;
                     object.material.castShadow = true;
                     object.material.receiveShadow = true;
                 }
+                if (object.material.name == "pc_chair") {
+                      pc_chair = object;
+                      pivot.add(object);
+                     
+         
+                }
+
             }
         }
     }
 
 
-
-
+   // pivot.add(pc_chair);
+  
+     scene.add(pivot);
+   
 
 
 
@@ -382,8 +397,8 @@ var step_light10 = 0;
         stats.update();
         var delta = clock.getDelta();
 
-        if (mesh) {
-            //   mesh.rotation.y+=0.006;
+        if (pc_chair) {
+              pc_chair.rotation.y+=0.006;
         }
 
         if (isMobile == false || isMobile == true) {
@@ -393,21 +408,27 @@ var step_light10 = 0;
         webGLRenderer.clear();
 
         // render using requestAnimationFrame
-              // ball bouncing
-              step += 0.03;
-              sphere.position.y = 7 + ( 20 * Math.abs(Math.sin(step)));
+        // ball bouncing
+        step += 0.03;
+        sphere.position.y = 7 + (20 * Math.abs(Math.sin(step)));
 
 
-              //project target moving
-              step_light9 += 0.0009;
-              spotLight9.target.position.y = 230 + ( 230 * Math.sin(step_light9));
+        //project target moving
+        step_light9 += 0.0009;
+        spotLight9.target.position.y = 230 + (230 * Math.sin(step_light9));
 
-            //name building target moving
-              step_light10 += 0.004;
-              spotLight10.target.position.z = -90 + ( 200 * Math.sin(step_light10));
-              spotLight10.target.position.y = 130 + ( 30 * Math.sin(step/10));
+        //hobbies target moving
+        step_light10 += 0.004;
+        spotLight10.target.position.z = -90 + (200 * Math.sin(step_light10));
+        spotLight10.target.position.y = 130 + (30 * Math.sin(step / 10));
+
+        //name building target moving
+        step_light += 0.002;
+        spotLight.target.position.z = 0 + (90 * Math.sin(step_light));
+        spotLight.target.position.x = 0 + (90 * Math.cos(step_light));
 
 
+        
 
         requestAnimationFrame(render);
 
