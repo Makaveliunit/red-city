@@ -9,6 +9,7 @@ var lock = false;
 
 var AutoF = true;
 
+var mesh;
 
 init();
 
@@ -40,20 +41,17 @@ function init() {
 
 
     var loader = new THREE.OBJMTLLoader();
-    var load = function (object) {
-        mesh = object;
-        scene.add(mesh);
-
-    };
+    var load;
 
 
     var i = 0;
     loader.load('../assets/models/city.obj',
         '../assets/models/city.mtl',
         function (object) {
-
-            scene.add(object);
-
+            var scale = chroma.scale(['red', 'red', 'red']);
+            setRandomColors(object, scale);
+            mesh = object;
+            scene.add(mesh);
         },
 
         //total_sz = size of .obj
@@ -112,6 +110,8 @@ function init() {
     webGLRenderer.setClearColor(new THREE.Color(0xff0000, 1.0));
     webGLRenderer.setSize(window.innerWidth, window.innerHeight);
     webGLRenderer.shadowMapEnabled = true;
+
+
 
     //window resize
     window.addEventListener('resize', onWindowResize, false);
@@ -222,40 +222,69 @@ function init() {
     scene.add(spotLight2);
     spotLight2.target.updateMatrixWorld();
 
-    // add spotlight hobbies
+    //-------------------------------------------------
 
-    var spotLight3 = new THREE.SpotLight(0xffffff, 3.0, 300, Math.PI / 9.0, 1, 0.5);
-    spotLight3.position.set(320, 90, -20);
-    spotLight3.target.position.set(600, 0, -20);
-    spotLight3.intensity = 3;
+    // add spotlight hobbies
+    var spotLight4 = new THREE.SpotLight(0xe92bc9, 5, 400, 0.14);
+    spotLight4.position.set(320, 90, -220);
+    spotLight4.target.position.set(600, -10, -220);
+    scene.add(spotLight4);
+    scene.add(spotLight4.target);
+    spotLight4.target.updateMatrixWorld();
+
+    // add spotlight hobbies
+    var spotLight3 = new THREE.SpotLight(0xffffff, 3, 400, 0.06);
+    spotLight3.position.set(320, 90, -172);
+    spotLight3.target.position.set(600, -10, -172);
     scene.add(spotLight3);
     scene.add(spotLight3.target);
     spotLight3.target.updateMatrixWorld();
 
 
+    // add spotlight hobbies
+    var spotLight5 = new THREE.SpotLight(0xeaca39, 5, 400, 0.08);
+    spotLight5.position.set(320, 90, -140);
+    spotLight5.target.position.set(600, -10, -140);
+    scene.add(spotLight5);
+    scene.add(spotLight5.target);
+    spotLight5.target.updateMatrixWorld();
 
-
+    // add spotlight hobbies
+    var spotLight6 = new THREE.SpotLight(0x9ef5e1, 5, 400, 0.129);
+    spotLight6.position.set(320, 90, -90);
+    spotLight6.target.position.set(600, -10, -89);
+    scene.add(spotLight6);
+    scene.add(spotLight6.target);
+    spotLight6.target.updateMatrixWorld();
 
 
     // add spotlight hobbies
-    var spotLight4 = new THREE.SpotLight(0xffffff, 3.0, 300, Math.PI / 9.0, 1, 0.5);
-    spotLight4.position.set(320, 90, -220);
-    spotLight4.target.position.set(600, 0, -150);
-    spotLight4.intensity = 3;
-    scene.add(spotLight4);
-    scene.add(spotLight4.target);
-    spotLight4.target.updateMatrixWorld();
+    var spotLight7 = new THREE.SpotLight(0x2629e8, 5, 400, 0.17);
+    spotLight7.position.set(320, 90, -40);
+    spotLight7.target.position.set(600, 0, -13);
+    scene.add(spotLight7);
+    scene.add(spotLight7.target);
+    spotLight7.target.updateMatrixWorld();
 
+
+    // add spotlight hobbies
+    var spotLight8 = new THREE.SpotLight(0x8cf3ac, 5, 600, 0.20);
+    spotLight8.position.set(320, 90, -200);
+    spotLight8.target.position.set(600, 0, 240);
+    scene.add(spotLight8);
+    scene.add(spotLight8.target);
+    spotLight8.castShadow = true;
+    spotLight8.target.updateMatrixWorld();
 
     //for testing purposes
-    helper4 = new THREE.SpotLightHelper(spotLight2);
-    helper3 = new THREE.SpotLightHelper(spotLight);
-    helper2 = new THREE.SpotLightHelper(spotLight4);
-    helper = new THREE.SpotLightHelper(spotLight3);
-    scene.add(helper);
-    scene.add(helper2);
-    scene.add(helper3);
-    scene.add(helper4);
+   // helper4 = new THREE.SpotLightHelper(spotLight2);
+  //  helper3 = new THREE.SpotLightHelper(spotLight);
+   // helper2 = new THREE.SpotLightHelper(spotLight4);
+   // helper = new THREE.SpotLightHelper(spotLight3);
+  //  scene.add(helper);
+  //  scene.add(helper2);
+  //  scene.add(helper3);
+  //  scene.add(helper4);
 
 
     //fog
@@ -266,8 +295,8 @@ function init() {
 
 
 
-    var mesh;
 
+ 
 
     render();
 
@@ -277,17 +306,18 @@ function init() {
 
         if (children && children.length > 0) {
             children.forEach(function (e) {
-                //                 setRandomColors(e, scale)
+                setRandomColors(e, scale)
             });
         } else {
             // no children assume contains a mesh
             if (object instanceof THREE.Mesh) {
-
-                //                  object.material.color = new THREE.Color(scale(Math.random()).hex());
-                if (object.material.name.indexOf("building") == 0) {
-                    //           object.material.emissive = new THREE.Color(0x444444);
-                    //            object.material.transparent = true;
-                    //            object.material.opacity = 0.5;
+                object.material.showShadow = true;
+         //       object.material.color = new THREE.Color(scale(Math.random()).hex());
+                if (object.material.name == "building_117") {
+            //        object.material.emissive = new THREE.Color(0x444444);
+                    object.material.transparent = true;
+                    object.material.opacity = 0.5;
+                    object.material.castShadow = true;
                 }
             }
         }
@@ -341,35 +371,35 @@ function init() {
         return stats;
     }
 
-  
+
 
     //controls returned to the user
     function initControl() {
 
 
         document.getElementById("control-output").style.position = 'absolute';
-       
+
         document.getElementById("control-output").style.color = 'transparent';
         document.getElementById("control-output").style.fontFamily = 'Monospace';
         document.getElementById("control-output").style.fontSize = '16px';
         document.getElementById("control-output").style.fontWeight = 'bold';
-        document.getElementById("control-output").style.marginLeft = '40%';
+        document.getElementById("control-output").style.marginLeft = '35%';
 
         document.getElementById("control-output").style.alignContent = 'center';
         document.getElementById("control-output").style.top = '0px';
 
 
         //sets control text
-        if(isMobile == false)
-        document.getElementById("control-output").innerHTML = 'Move: [w][a][s][d] &nbsp;&nbsp;&nbsp;&nbsp; Elevation: [r][f] &nbsp;&nbsp;&nbsp;&nbsp; Tilt: [e][q]';
+        if (isMobile == false)
+            document.getElementById("control-output").innerHTML = 'Move: [w][a][s][d] &nbsp;&nbsp;&nbsp;&nbsp; Elevation: [r][f] &nbsp;&nbsp;&nbsp;&nbsp; Tilt: [e][q]';
 
         //sets control text
-        if(isMobile == true) {
+        if (isMobile == true) {
             document.getElementById("control-output").style.marginLeft = '25%';
             document.getElementById("control-output").style.fontSize = '12px';
             document.getElementById("control-output").innerHTML = '[Long touch] Auto Forward: ' + AutoF + '<br>           Touch to auto-turn.';
-            if ( loading == 0 )
-            document.getElementById("control-output").style.color = 'black';
+            if (loading == 0)
+                document.getElementById("control-output").style.color = 'black';
         }
     }
 
