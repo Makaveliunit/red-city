@@ -207,6 +207,7 @@ function init() {
 // EVERYTHING BELOW HERE ARE EXTRA MESH //////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 var step = 0;
+step_light9 = 0;
 
 
     var sphereGeometry = new THREE.SphereGeometry(3, 20, 20);
@@ -297,7 +298,7 @@ var step = 0;
 
 //-------------------------------------------------------
     // add spotlight project
-    var spotLight9 = new THREE.SpotLight(0xffffff, 5, 800, 0.5);
+    var spotLight9 = new THREE.SpotLight(0xffffff, 6, 800, 0.5);
     spotLight9.position.set(0, 350, 0);
     spotLight9.target.position.set(-320, 380, -30);
     scene.add(spotLight9);
@@ -345,11 +346,12 @@ var step = 0;
             if (object instanceof THREE.Mesh) {
                 object.material.showShadow = true;
          //       object.material.color = new THREE.Color(scale(Math.random()).hex());
-                if (object.material.name == "building_117") {
+                if (object.material.name == "wall") {
             //        object.material.emissive = new THREE.Color(0x444444);
-                    object.material.transparent = true;
-                    object.material.opacity = 0.5;
+               //     object.material.transparent = true;
+              //      object.material.opacity = 0.5;
                     object.material.castShadow = true;
+                    object.material.receiveShadow = true;
                 }
             }
         }
@@ -380,6 +382,11 @@ var step = 0;
               // ball bouncing
               step += 0.03;
               sphere.position.y = 7 + ( 20 * Math.abs(Math.sin(step)));
+
+
+              //project target moving
+              step_light9 += 0.0009;
+              spotLight9.target.position.y = 230 + ( 230 * Math.sin(step_light9));
 
 
         requestAnimationFrame(render);
