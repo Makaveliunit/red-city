@@ -204,8 +204,27 @@ function init() {
     mediaElement.play();
 
 
+// EVERYTHING BELOW HERE ARE EXTRA MESH //////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+var step = 0;
 
 
+    var sphereGeometry = new THREE.SphereGeometry(3, 20, 20);
+    var sphereMaterial = new THREE.MeshLambertMaterial({color: 0xff0000});
+    var sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+
+    // position the sphere
+    sphere.position.x = 475;
+    sphere.position.y = 0;
+    sphere.position.z = 10;
+    sphere.castShadow = true;
+
+    // add the sphere to the scene
+    scene.add(sphere);
+
+ 
+///////////////////////////////////////////////////////////////////////////
+/////////////////////ANIMATION STOPS HERE////////////////////////////////
 
 
     // add main name spotlight
@@ -276,6 +295,19 @@ function init() {
     spotLight8.castShadow = true;
     spotLight8.target.updateMatrixWorld();
 
+//-------------------------------------------------------
+    // add spotlight project
+    var spotLight9 = new THREE.SpotLight(0xffffff, 5, 800, 0.5);
+    spotLight9.position.set(0, 350, 0);
+    spotLight9.target.position.set(-320, 380, -30);
+    scene.add(spotLight9);
+    scene.add(spotLight9.target);
+    spotLight9.target.updateMatrixWorld();
+
+   helper = new THREE.SpotLightHelper(spotLight9);
+   scene.add(helper);
+
+
     //for testing purposes
    // helper4 = new THREE.SpotLightHelper(spotLight2);
   //  helper3 = new THREE.SpotLightHelper(spotLight);
@@ -324,9 +356,9 @@ function init() {
     }
 
 
-    function animate() {
 
-    }
+
+
 
 
 
@@ -345,6 +377,11 @@ function init() {
         webGLRenderer.clear();
 
         // render using requestAnimationFrame
+              // ball bouncing
+              step += 0.03;
+              sphere.position.y = 7 + ( 20 * Math.abs(Math.sin(step)));
+
+
         requestAnimationFrame(render);
 
 
