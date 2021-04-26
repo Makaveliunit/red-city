@@ -209,6 +209,7 @@ function init() {
 var step = 0;
 var step_light9 = 0;
 var step_light = 0;
+var step_light10 = 0;
 
 
     var sphereGeometry = new THREE.SphereGeometry(3, 20, 20);
@@ -218,7 +219,7 @@ var step_light = 0;
     // position the sphere
     sphere.position.x = 475;
     sphere.position.y = 0;
-    sphere.position.z = 10;
+    sphere.position.z = 50;
     sphere.castShadow = true;
 
     // add the sphere to the scene
@@ -299,8 +300,18 @@ var step_light = 0;
     spotLight8.castShadow = true;
     spotLight8.target.updateMatrixWorld();
 
+
+        // add ANIMATED spotlight hobbies
+        var spotLight10 = new THREE.SpotLight(0xffffff, 3, 600, 0.15);
+        spotLight10.position.set(320, 90, -200);
+        spotLight10.target.position.set(600, 120, 240);
+        scene.add(spotLight10);
+        scene.add(spotLight10.target);
+        spotLight10.castShadow = true;
+        spotLight10.target.updateMatrixWorld();
+
 //-------------------------------------------------------
-    // add spotlight project
+    // add ANIMATED spotlight project
     var spotLight9 = new THREE.SpotLight(0xffffff, 6, 800, 0.5);
     spotLight9.position.set(0, 350, 0);
     spotLight9.target.position.set(-320, 380, -30);
@@ -392,9 +403,11 @@ var step_light = 0;
               spotLight9.target.position.y = 230 + ( 230 * Math.sin(step_light9));
 
             //name building target moving
-              step_light += 0.002;
-              spotLight.target.position.z = 0 + ( 90 * Math.sin(step_light));
-              spotLight.target.position.x = 0 + ( 90 * Math.cos(step_light));
+              step_light10 += 0.004;
+              spotLight10.target.position.z = -90 + ( 200 * Math.sin(step_light10));
+              spotLight10.target.position.y = 130 + ( 30 * Math.sin(step/10));
+
+
 
         requestAnimationFrame(render);
 
