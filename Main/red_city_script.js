@@ -21,7 +21,7 @@ function init() {
 
     var clock = new THREE.Clock();
 
- //   THREE.RectAreaLightUniformsLib.init();
+
 
     //loading is true by default
     var loading = 1;
@@ -310,10 +310,10 @@ function init() {
     spotLight10.target.updateMatrixWorld();
 
     //-------------------------------------------------------
-    // add ANIMATED spotlight project
-    var spotLight9 = new THREE.SpotLight(0xffffff, 6, 800, 0.5);
-    spotLight9.position.set(0, 350, 0);
-    spotLight9.target.position.set(-320, 380, -30);
+    // add project spotlight
+    var spotLight9 = new THREE.SpotLight(0xffffff, 12, 1500, 0.4);
+    spotLight9.position.set(-100, 800, -100);
+    spotLight9.target.position.set(-500, 300, -100);
     scene.add(spotLight9);
     scene.add(spotLight9.target);
     spotLight9.target.updateMatrixWorld();
@@ -321,26 +321,22 @@ function init() {
     helper = new THREE.SpotLightHelper(spotLight9);
     scene.add(helper);
 
- /*
-    var rectLight = new THREE.RectAreaLight( 0xffffff, 1,  30, 30 );
-    rectLight.position.set( 5, 5, 0 );
-    rectLight.lookAt( 0, 0, 0 );
-    scene.add( rectLight );
 
-    var rectLightHelper = new THREE.RectAreaLightHelper( rectLight );
-    rectLight.add( rectLightHelper );
 
-*/
 
-    //for testing purposes
-    // helper4 = new THREE.SpotLightHelper(spotLight2);
-    //  helper3 = new THREE.SpotLightHelper(spotLight);
-    // helper2 = new THREE.SpotLightHelper(spotLight4);
-    // helper = new THREE.SpotLightHelper(spotLight3);
-    //  scene.add(helper);
-    //  scene.add(helper2);
-    //  scene.add(helper3);
-    //  scene.add(helper4);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     //fog
@@ -363,36 +359,50 @@ function init() {
     var pc_chair;
 
 
-//pictures for project building here#######################################
+    //pictures for project building here#######################################
 
     //bottom right  WIDTH x HEIGHT
     var red_cit1 = createMesh(new THREE.PlaneBufferGeometry(85, 50), "red_cit1.png");
     red_cit1.position.x = -370;
     red_cit1.position.y = 60;
     red_cit1.position.z = -198;
-    red_cit1.rotation.y = 0.5*Math.PI;
-
+    red_cit1.rotation.y = 0.5 * Math.PI;
 
     //bottom right+1  WIDTH x HEIGHT
     var red_cit2 = createMesh(new THREE.PlaneBufferGeometry(85, 50), "red_cit2.png");
     red_cit2.position.x = -370;
     red_cit2.position.y = 115;
     red_cit2.position.z = -198;
-    red_cit2.rotation.y = 0.5*Math.PI;
+    red_cit2.rotation.y = 0.5 * Math.PI;
 
+    //bottom right+2  WIDTH x HEIGHT
+    var red_cit3 = createMesh(new THREE.PlaneBufferGeometry(85, 50), "red_cit3.png");
+    red_cit3.position.x = -370;
+    red_cit3.position.y = 170;
+    red_cit3.position.z = -198;
+    red_cit3.rotation.y = 0.5 * Math.PI;
 
-   //top banner  WIDTH x HEIGHT
-   var red_cit_banner = createMesh(new THREE.PlaneBufferGeometry(85, 50), "red_cit_banner.png");
-   red_cit_banner.position.x = -370;
-   red_cit_banner.position.y = 300;
-   red_cit_banner.position.z = -198;
-   red_cit_banner.rotation.y = 0.5*Math.PI;
+    //bottom right+3  WIDTH x HEIGHT
+    var red_cit4 = createMesh(new THREE.PlaneBufferGeometry(85, 50), "red_cit4.png");
+    red_cit4.position.x = -370;
+    red_cit4.position.y = 225;
+    red_cit4.position.z = -198;
+    red_cit4.rotation.y = 0.5 * Math.PI;
 
-//scene add picture here--------------------
+    //top banner  WIDTH x HEIGHT
+    var red_cit_banner = createMesh(new THREE.PlaneBufferGeometry(85, 70), "red_cit_banner.png");
+    red_cit_banner.position.x = -370;
+    red_cit_banner.position.y = 290;
+    red_cit_banner.position.z = -198;
+    red_cit_banner.rotation.y = 0.5 * Math.PI;
+
+    //scene add picture here--------------------
 
 
     scene.add(red_cit1);
     scene.add(red_cit2);
+    scene.add(red_cit3);
+    scene.add(red_cit4);
     scene.add(red_cit_banner);
 
 
@@ -471,10 +481,8 @@ function init() {
         sphere.position.y = 7 + (20 * Math.abs(Math.sin(step)));
 
 
-        //project target moving
-        step_light9 += 0.0009;
-        spotLight9.target.position.y = 230 + (230 * Math.sin(step_light9));
-        
+
+
 
 
         //hobbies target moving
