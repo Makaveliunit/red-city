@@ -1,6 +1,5 @@
 // author: Rami Abboud
 
-
 //launches the loading
 var elem = document.getElementById("loading-output");
 
@@ -49,7 +48,7 @@ function init() {
         '../assets/models/city.mtl',
         function (object) {
             var scale = chroma.scale(['red', 'red', 'red']);
-            setRandomColors(object, scale);
+            setMesh(object, scale);
             mesh = object;
             scene.add(mesh);
         },
@@ -337,6 +336,9 @@ function init() {
     //fog
     scene.fog = new THREE.Fog(0xff0000, 100, 1000);
 
+
+
+
     // add the output of the renderer to the html element
     document.getElementById("WebGL-output").appendChild(webGLRenderer.domElement);
 
@@ -351,15 +353,59 @@ function init() {
     var pc_chair;
 
 
+    var sphere2 = createMesh(new THREE.BoxGeometry(15, 15, 15), "red_cit1.png");
+    sphere2.rotation.y = 0.5;
+    sphere2.position.x = -12;
+    scene.add(sphere2);
+
+
+
+
+
+
+
+    var cube = createMesh(new THREE.BoxGeometry(15, 15, 15), "red_cit1.png");
+    cube.position.x = -12;
+    scene.add(sphere2);
+
+
+
+    function createMesh(geom, imageFile) {
+var t = THREE.ImageUtils.loadTexture("../imgs/" + imageFile);
+var mat1 = new THREE.MeshPhongMaterial({
+    map: t
+});
+var mesh = new THREE.Mesh(geom, mat1);
+return mesh;
+return mesh;
+}
+
+
+
+
+
     render();
 
-    function setRandomColors(object, scale) {
+    //creates a mesh a adds png on it
+    function createMesh(geom, imageFile) {
+        var t = THREE.ImageUtils.loadTexture("../imgs/" + imageFile);
+        var mat1 = new THREE.MeshPhongMaterial({
+            map: t
+        });
+        var mesh = new THREE.Mesh(geom, mat1);
+        return mesh;
+    }
+
+
+
+    //finds Mesh from main city.obj to edit them
+    function setMesh(object, scale) {
         var children = object.children;
 
 
         if (children && children.length > 0) {
             children.forEach(function (e) {
-                setRandomColors(e, scale)
+                setMesh(e, scale)
             });
         } else {
             // no children assume contains a mesh
@@ -374,10 +420,10 @@ function init() {
                     object.material.receiveShadow = true;
                 }
                 if (object.material.name == "pc_chair") {
-                      pc_chair = object;
-                      pivot.add(object);
-                     
-         
+                    pc_chair = object;
+                    pivot.add(object);
+
+
                 }
 
             }
@@ -385,10 +431,9 @@ function init() {
     }
 
 
-   // pivot.add(pc_chair);
-  
-     scene.add(pivot);
-   
+    // pivot.add(pc_chair);
+    scene.add(pivot);
+
 
 
 
@@ -398,7 +443,7 @@ function init() {
         var delta = clock.getDelta();
 
         if (pc_chair) {
-              pc_chair.rotation.y+=0.006;
+            pc_chair.rotation.y += 0.006;
         }
 
         if (isMobile == false || isMobile == true) {
@@ -428,7 +473,7 @@ function init() {
         spotLight.target.position.x = 0 + (90 * Math.cos(step_light));
 
 
-        
+        //    cube.rotation.y += 0.006;
 
         requestAnimationFrame(render);
 
@@ -484,7 +529,7 @@ function init() {
             document.getElementById("control-output").style.fontSize = '12px';
             document.getElementById("control-output").innerHTML = '[Long touch] Auto Forward: ' + AutoF + '<br>           Touch to auto-turn.';
             if (loading == 0)
-                document.getElementById("control-output").style.color = 'black';
+                document.getElementById("control-output").style.color = 'white';
         }
     }
 
@@ -497,7 +542,7 @@ function init() {
         if (loading == 0) {
 
             elem.parentNode.removeChild(elem);
-            document.getElementById("control-output").style.color = 'black';
+            document.getElementById("control-output").style.color = 'white';
         }
 
     }
