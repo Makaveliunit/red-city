@@ -353,20 +353,24 @@ function init() {
     var pc_chair;
 
 
+//pictures for project building here#######################################
 
-
-    //plane WIDTH x HEIGHT
-    var cube = createMesh(new THREE.PlaneGeometry(85, 50), "red_cit1.png");
-    cube.position.x = -370;
-    cube.position.y = 60;
-    cube.position.z = -198;
-    cube.rotation.y = 0.5*Math.PI;
-
-
-    scene.add(cube);
+    //bottom right  WIDTH x HEIGHT
+    var red_cit1 = createMesh(new THREE.PlaneGeometry(85, 50), "red_cit1.png");
+    red_cit1.position.x = -370;
+    red_cit1.position.y = 60;
+    red_cit1.position.z = -198;
+    red_cit1.rotation.y = 0.5*Math.PI;
 
 
 
+
+
+
+//scene add picture here--------------------
+
+
+    scene.add(red_cit1);
 
     render();
 
