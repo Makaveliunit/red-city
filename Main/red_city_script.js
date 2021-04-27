@@ -324,21 +324,6 @@ function init() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //fog
     scene.fog = new THREE.Fog(0xff0000, 100, 1000);
 
@@ -431,10 +416,43 @@ function init() {
     coviddb4.position.z = -101;
     coviddb4.rotation.y = 0.5 * Math.PI;
 
+    //top banner  WIDTH x HEIGHT
+    var tax_banner = createMesh(new THREE.PlaneBufferGeometry(85, 70), "tax_banner.png");
+    tax_banner.position.x = -370;
+    tax_banner.position.y = 290;
+    tax_banner.position.z = -4;
+    tax_banner.rotation.y = 0.5 * Math.PI;
+
+    //bottom right + 3  WIDTH x HEIGHT
+    var tax1 = createMesh(new THREE.PlaneBufferGeometry(85, 50), "tax1.png");
+    tax1.position.x = -370;
+    tax1.position.y = 225;
+    tax1.position.z = -4;
+    tax1.rotation.y = 0.5 * Math.PI;
+
+    //bottom right + 2  WIDTH x HEIGHT
+    var tax2 = createMesh(new THREE.PlaneBufferGeometry(85, 50), "tax2.png");
+    tax2.position.x = -370;
+    tax2.position.y = 170;
+    tax2.position.z = -4;
+    tax2.rotation.y = 0.5 * Math.PI;
+
+    //bottom right + 1  WIDTH x HEIGHT
+    var tax3 = createMesh(new THREE.PlaneBufferGeometry(85, 50), "tax3.png");
+    tax3.position.x = -370;
+    tax3.position.y = 115;
+    tax3.position.z = -4;
+    tax3.rotation.y = 0.5 * Math.PI;
+
+    //bottom right banner  WIDTH x HEIGHT
+    var tax4 = createMesh(new THREE.PlaneBufferGeometry(85, 50), "tax4.png");
+    tax4.position.x = -370;
+    tax4.position.y = 60;
+    tax4.position.z = -4;
+    tax4.rotation.y = 0.5 * Math.PI;
+
 
     //scene add picture here--------------------
-
-
     scene.add(red_cit1);
     scene.add(red_cit2);
     scene.add(red_cit3);
@@ -445,6 +463,11 @@ function init() {
     scene.add(coviddb3);
     scene.add(coviddb4);
     scene.add(coviddb_banner);
+    scene.add(tax1);
+    scene.add(tax2);
+    scene.add(tax3);
+    scene.add(tax4);
+    scene.add(tax_banner);
 
 
     //renders everything
@@ -454,7 +477,7 @@ function init() {
     function createMesh(geom, imageFile) {
         var t = THREE.ImageUtils.loadTexture("../imgs/" + imageFile);
         var mat1 = new THREE.MeshPhongMaterial({
-            map: t
+            map: t, reflectivity: 0
         });
         var mesh = new THREE.Mesh(geom, mat1);
         return mesh;
