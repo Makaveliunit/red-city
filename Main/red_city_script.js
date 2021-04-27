@@ -311,7 +311,7 @@ function init() {
 
     //-------------------------------------------------------
     // add project spotlight
-    var spotLight9 = new THREE.SpotLight(0xffffff, 12, 1500, 0.4);
+    var spotLight9 = new THREE.SpotLight(0xffffff, 5, 1500, 0.4);
     spotLight9.position.set(-100, 800, -100);
     spotLight9.target.position.set(-500, 300, -100);
     scene.add(spotLight9);
@@ -396,6 +396,42 @@ function init() {
     red_cit_banner.position.z = -198;
     red_cit_banner.rotation.y = 0.5 * Math.PI;
 
+    //top banner  WIDTH x HEIGHT
+    var coviddb_banner = createMesh(new THREE.PlaneBufferGeometry(85, 70), "coviddb_banner.png");
+    coviddb_banner.position.x = -370;
+    coviddb_banner.position.y = 290;
+    coviddb_banner.position.z = -101;
+    coviddb_banner.rotation.y = 0.5 * Math.PI;
+
+    //bottom right + 3  WIDTH x HEIGHT
+    var coviddb1 = createMesh(new THREE.PlaneBufferGeometry(85, 50), "coviddb1.png");
+    coviddb1.position.x = -370;
+    coviddb1.position.y = 225;
+    coviddb1.position.z = -101;
+    coviddb1.rotation.y = 0.5 * Math.PI;
+
+    //bottom right + 2  WIDTH x HEIGHT
+    var coviddb2 = createMesh(new THREE.PlaneBufferGeometry(85, 50), "coviddb2.png");
+    coviddb2.position.x = -370;
+    coviddb2.position.y = 170;
+    coviddb2.position.z = -101;
+    coviddb2.rotation.y = 0.5 * Math.PI;
+
+    //bottom right + 1  WIDTH x HEIGHT
+    var coviddb3 = createMesh(new THREE.PlaneBufferGeometry(85, 50), "coviddb3.png");
+    coviddb3.position.x = -370;
+    coviddb3.position.y = 115;
+    coviddb3.position.z = -101;
+    coviddb3.rotation.y = 0.5 * Math.PI;
+
+    //bottom right banner  WIDTH x HEIGHT
+    var coviddb4 = createMesh(new THREE.PlaneBufferGeometry(85, 50), "coviddb4.png");
+    coviddb4.position.x = -370;
+    coviddb4.position.y = 60;
+    coviddb4.position.z = -101;
+    coviddb4.rotation.y = 0.5 * Math.PI;
+
+
     //scene add picture here--------------------
 
 
@@ -404,6 +440,11 @@ function init() {
     scene.add(red_cit3);
     scene.add(red_cit4);
     scene.add(red_cit_banner);
+    scene.add(coviddb1);
+    scene.add(coviddb2);
+    scene.add(coviddb3);
+    scene.add(coviddb4);
+    scene.add(coviddb_banner);
 
 
     //renders everything
