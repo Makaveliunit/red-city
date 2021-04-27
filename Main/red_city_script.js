@@ -470,8 +470,7 @@ function init() {
     scene.add(tax_banner);
 
 
-    //renders everything
-    render();
+  
 
     //creates a mesh a adds png on it
     function createMesh(geom, imageFile) {
@@ -508,7 +507,7 @@ function init() {
                 }
                 if (object.material.name == "pc_chair") {
                     pc_chair = object;
-                    pivot.add(object);
+                    pivot.add(pc_chair);
 
 
                 }
@@ -523,14 +522,15 @@ function init() {
 
 
 
-
+  //renders everything
+  render();
 
     function render() {
         stats.update();
         var delta = clock.getDelta();
 
-        if (pc_chair) {
-            pc_chair.rotation.y += 0.006;
+        if (pivot) {
+            pivot.rotation.y += 0.006;
         }
 
         if (isMobile == false || isMobile == true) {
@@ -538,6 +538,8 @@ function init() {
         }
 
         webGLRenderer.clear();
+
+        
 
         // render using requestAnimationFrame
         // ball bouncing
