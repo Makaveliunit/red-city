@@ -21,7 +21,7 @@ function init() {
 
     var clock = new THREE.Clock();
 
-
+ //   THREE.RectAreaLightUniformsLib.init();
 
     //loading is true by default
     var loading = 1;
@@ -321,6 +321,16 @@ function init() {
     helper = new THREE.SpotLightHelper(spotLight9);
     scene.add(helper);
 
+ /*
+    var rectLight = new THREE.RectAreaLight( 0xffffff, 1,  30, 30 );
+    rectLight.position.set( 5, 5, 0 );
+    rectLight.lookAt( 0, 0, 0 );
+    scene.add( rectLight );
+
+    var rectLightHelper = new THREE.RectAreaLightHelper( rectLight );
+    rectLight.add( rectLightHelper );
+
+*/
 
     //for testing purposes
     // helper4 = new THREE.SpotLightHelper(spotLight2);
@@ -356,22 +366,37 @@ function init() {
 //pictures for project building here#######################################
 
     //bottom right  WIDTH x HEIGHT
-    var red_cit1 = createMesh(new THREE.PlaneGeometry(85, 50), "red_cit1.png");
+    var red_cit1 = createMesh(new THREE.PlaneBufferGeometry(85, 50), "red_cit1.png");
     red_cit1.position.x = -370;
     red_cit1.position.y = 60;
     red_cit1.position.z = -198;
     red_cit1.rotation.y = 0.5*Math.PI;
 
 
+    //bottom right+1  WIDTH x HEIGHT
+    var red_cit2 = createMesh(new THREE.PlaneBufferGeometry(85, 50), "red_cit2.png");
+    red_cit2.position.x = -370;
+    red_cit2.position.y = 115;
+    red_cit2.position.z = -198;
+    red_cit2.rotation.y = 0.5*Math.PI;
 
 
-
+   //top banner  WIDTH x HEIGHT
+   var red_cit_banner = createMesh(new THREE.PlaneBufferGeometry(85, 50), "red_cit_banner.png");
+   red_cit_banner.position.x = -370;
+   red_cit_banner.position.y = 300;
+   red_cit_banner.position.z = -198;
+   red_cit_banner.rotation.y = 0.5*Math.PI;
 
 //scene add picture here--------------------
 
 
     scene.add(red_cit1);
+    scene.add(red_cit2);
+    scene.add(red_cit_banner);
 
+
+    //renders everything
     render();
 
     //creates a mesh a adds png on it
@@ -449,6 +474,8 @@ function init() {
         //project target moving
         step_light9 += 0.0009;
         spotLight9.target.position.y = 230 + (230 * Math.sin(step_light9));
+        
+
 
         //hobbies target moving
         step_light10 += 0.004;
@@ -459,6 +486,8 @@ function init() {
         step_light += 0.002;
         spotLight.target.position.z = 0 + (90 * Math.sin(step_light));
         spotLight.target.position.x = 0 + (90 * Math.cos(step_light));
+
+
 
 
         //    cube.rotation.y += 0.006;
