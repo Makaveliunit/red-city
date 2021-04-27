@@ -353,33 +353,17 @@ function init() {
     var pc_chair;
 
 
-    var sphere2 = createMesh(new THREE.BoxGeometry(15, 15, 15), "red_cit1.png");
-    sphere2.rotation.y = 0.5;
-    sphere2.position.x = -12;
-    scene.add(sphere2);
 
 
+    //plane WIDTH x HEIGHT
+    var cube = createMesh(new THREE.PlaneGeometry(85, 50), "red_cit1.png");
+    cube.position.x = -370;
+    cube.position.y = 60;
+    cube.position.z = -198;
+    cube.rotation.y = 0.5*Math.PI;
 
 
-
-
-
-    var cube = createMesh(new THREE.BoxGeometry(15, 15, 15), "red_cit1.png");
-    cube.position.x = -12;
-    scene.add(sphere2);
-
-
-
-    function createMesh(geom, imageFile) {
-var t = THREE.ImageUtils.loadTexture("../imgs/" + imageFile);
-var mat1 = new THREE.MeshPhongMaterial({
-    map: t
-});
-var mesh = new THREE.Mesh(geom, mat1);
-return mesh;
-return mesh;
-}
-
+    scene.add(cube);
 
 
 
