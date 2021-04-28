@@ -300,6 +300,14 @@ function init() {
     spotLight8.target.updateMatrixWorld();
 
 
+        // add spotlight hobbies
+        var spotLight11 = new THREE.SpotLight(0xfe9ad6, 3, 600, 0.14);
+        spotLight11.position.set(320, 90, -200);
+        spotLight11.target.position.set(600, -25, -315);
+        scene.add(spotLight11);
+        scene.add(spotLight11.target);
+        spotLight11.target.updateMatrixWorld();
+
     // add ANIMATED spotlight hobbies
     var spotLight10 = new THREE.SpotLight(0xffffff, 3, 600, 0.15);
     spotLight10.position.set(320, 90, -200);
@@ -341,8 +349,13 @@ function init() {
     pivot.position.y = 15;
     pivot.position.z = -222.4;
 
-    var pc_chair;
+    var pivot2 = new THREE.Object3D();
+    pivot2.position.x = -3;
+    pivot2.position.y = 160;
+    pivot2.position.z = -66;
 
+    var pc_chair;
+    var R;
 
     //pictures for project building here#######################################
 
@@ -512,6 +525,13 @@ function init() {
 
                 }
 
+                if (object.material.name == "R") {
+                    R = object;
+                    pivot2.add(R);
+
+
+                }
+
             }
         }
     }
@@ -519,7 +539,7 @@ function init() {
 
     // pivot.add(pc_chair);
     scene.add(pivot);
-
+    scene.add(pivot2);
 
 
   //renders everything
@@ -532,6 +552,13 @@ function init() {
         if (pivot) {
             pivot.rotation.y += 0.006;
         }
+
+        if (pivot2) {
+            pivot2.rotation.y += 0.004;
+        }
+
+
+
 
         if (isMobile == false || isMobile == true) {
             flyControls.update(delta);
