@@ -334,8 +334,6 @@ function init() {
     scene.add(spotLight9.target);
     spotLight9.target.updateMatrixWorld();
 
-    helper = new THREE.SpotLightHelper(spotLight9);
-    scene.add(helper);
 
 
 
