@@ -58,7 +58,7 @@ function init() {
         //loading = loading %
         // called when loading is in progresses     
         function (xhr) {
-            var total_sz = 52739112;
+            var total_sz = 75739112;
             var loading_pc = (xhr.loaded / total_sz * 100);
             if (i == 0)
                 loading_pc = 0;
@@ -317,6 +317,14 @@ function init() {
     spotLight10.castShadow = true;
     spotLight10.target.updateMatrixWorld();
 
+    var spotLight12 = new THREE.SpotLight(0xffffff, 3, 600, 0.15);
+    spotLight12.position.set(320, 90, -200);
+    spotLight12.target.position.set(600, 120, -100);
+    scene.add(spotLight12);
+    scene.add(spotLight12.target);
+    spotLight12.castShadow = true;
+    spotLight12.target.updateMatrixWorld();
+
     //-------------------------------------------------------
     // add project spotlight
     var spotLight9 = new THREE.SpotLight(0xffffff, 5, 1500, 0.4);
@@ -514,7 +522,7 @@ function init() {
                 if (object.material.name == "building_117") {
                     //        object.material.emissive = new THREE.Color(0x444444);
                     object.material.transparent = true;
-                    object.material.opacity = 0.5;
+                    object.material.opacity = 1;
                     object.material.castShadow = true;
                     object.material.receiveShadow = true;
                 }
@@ -575,13 +583,17 @@ function init() {
 
 
 
-
-
-
         //hobbies target moving
         step_light10 += 0.004;
         spotLight10.target.position.z = -90 + (200 * Math.sin(step_light10));
         spotLight10.target.position.y = 130 + (30 * Math.sin(step / 10));
+
+
+        //hobbies target moving
+        spotLight12.target.position.z = -110 + (-150 * Math.sin(step_light10/2));
+        spotLight12.target.position.y = 160 + (1.3 * Math.sin(step / 15));
+
+
 
         //name building target moving
         step_light += 0.002;
