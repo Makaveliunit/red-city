@@ -561,7 +561,7 @@ function init() {
             pivot.rotation.y += 0.006;
         }
 
-        if (pivot2) {
+        if (pivot2) { 
             pivot2.rotation.y += 0.004;
         }
 
