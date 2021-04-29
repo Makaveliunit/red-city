@@ -360,8 +360,23 @@ function init() {
     pivot2.position.y = 160;
     pivot2.position.z = -66;
 
+    var pivot3 = new THREE.Object3D();
+    pivot3.position.x = -3200;
+    pivot3.position.y = 150;
+    pivot3.position.z = 3000;
+    pivot3.rotation.y = 5/4*Math.PI;
+    
+    var pivot4 = new THREE.Object3D();
+    pivot4.position.x = 0;
+    pivot4.position.y = 150;
+    pivot4.position.z = 0;
+    pivot4.rotation.y = 5/4*Math.PI;
+
+
     var pc_chair;
     var R;
+    var f16;
+    var f16_2;
 
     //pictures for project building here#######################################
 
@@ -527,26 +542,32 @@ function init() {
                 if (object.material.name == "pc_chair") {
                     pc_chair = object;
                     pivot.add(pc_chair);
-
-
                 }
 
                 if (object.material.name == "R") {
                     R = object;
                     pivot2.add(R);
-
-
                 }
+                if (object.material.name == "f16") {
+                    console.log('f16 good');
+                    f16 = object;
+                    pivot3.add(f16);
+                }
+
+
 
             }
         }
     }
 
 
+   
+
     // pivot.add(pc_chair);
     scene.add(pivot);
     scene.add(pivot2);
-
+    scene.add(pivot3);
+    //scene.add(pivot4);
 
   //renders everything
   render();
@@ -562,7 +583,15 @@ function init() {
         if (pivot2) { 
             pivot2.rotation.y += 0.004;
         }
+        if (pivot3) { 
+            pivot3.position.x += 9;
+            pivot3.position.z -= 9;
+            if(pivot3.position.x > 10000) {
+            pivot3.position.x = -3200;
+            pivot3.position.z = 3000;
+            }
 
+        }
 
 
 
