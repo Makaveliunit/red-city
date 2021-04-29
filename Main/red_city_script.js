@@ -58,7 +58,7 @@ function init() {
         //loading = loading %
         // called when loading is in progresses     
         function (xhr) {
-            var total_sz = 75739112;
+            var total_sz = 77000000;
             var loading_pc = (xhr.loaded / total_sz * 100);
             if (i == 0)
                 loading_pc = 0;
