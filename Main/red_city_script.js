@@ -58,7 +58,7 @@ function init() {
         //loading = loading %
         // called when loading is in progresses     
         function (xhr) {
-            var total_sz = 77000000;
+            var total_sz = 87000000;
             var loading_pc = (xhr.loaded / total_sz * 100);
             if (i == 0)
                 loading_pc = 0;
@@ -300,13 +300,25 @@ function init() {
     spotLight8.target.updateMatrixWorld();
 
 
+    // add spotlight hobbies
+    var spotLight11 = new THREE.SpotLight(0xfe9ad6, 3, 600, 0.14);
+    spotLight11.position.set(320, 90, -200);
+    spotLight11.target.position.set(600, -25, -315);
+    scene.add(spotLight11);
+    scene.add(spotLight11.target);
+    spotLight11.target.updateMatrixWorld();
+
         // add spotlight hobbies
-        var spotLight11 = new THREE.SpotLight(0xfe9ad6, 3, 600, 0.14);
-        spotLight11.position.set(320, 90, -200);
-        spotLight11.target.position.set(600, -25, -315);
-        scene.add(spotLight11);
-        scene.add(spotLight11.target);
-        spotLight11.target.updateMatrixWorld();
+        var spotLight13 = new THREE.SpotLight(0xffffff, 10, 1200, 0.42);
+        spotLight13.position.set(320, 90, -200);
+        spotLight13.target.position.set(400, 400, 315);
+        scene.add(spotLight13);
+        scene.add(spotLight13.target);
+        spotLight13.target.updateMatrixWorld();
+
+   //    const spotLightHelper = new THREE.SpotLightHelper( spotLight13 );
+   //     scene.add( spotLightHelper );
+
 
     // add ANIMATED spotlight hobbies
     var spotLight10 = new THREE.SpotLight(0xffffff, 3, 600, 0.15);
@@ -364,19 +376,19 @@ function init() {
     pivot3.position.x = -3200;
     pivot3.position.y = 150;
     pivot3.position.z = 3000;
-    pivot3.rotation.y = 5/4*Math.PI;
-    
+    pivot3.rotation.y = 5 / 4 * Math.PI;
+
     var pivot4 = new THREE.Object3D();
-    pivot4.position.x = 0;
-    pivot4.position.y = 150;
-    pivot4.position.z = 0;
-    pivot4.rotation.y = 5/4*Math.PI;
+    pivot4.position.x = -3320;
+    pivot4.position.y = 163;
+    pivot4.position.z = 3080;
+    pivot4.rotation.y = 7 / 4 * Math.PI;
 
 
     var pc_chair;
     var R;
     var f16;
-    var f16_2;
+    var jet1;
 
     //pictures for project building here#######################################
 
@@ -504,7 +516,7 @@ function init() {
     scene.add(tax_banner);
 
 
-  
+
 
     //creates a mesh a adds png on it
     function createMesh(geom, imageFile) {
@@ -549,11 +561,13 @@ function init() {
                     pivot2.add(R);
                 }
                 if (object.material.name == "f16") {
-                    console.log('f16 good');
                     f16 = object;
                     pivot3.add(f16);
                 }
-
+                if (object.material.name == "jet1") {
+                    jet1 = object;
+                    pivot4.add(jet1);
+                }
 
 
             }
@@ -561,16 +575,16 @@ function init() {
     }
 
 
-   
+
 
     // pivot.add(pc_chair);
     scene.add(pivot);
     scene.add(pivot2);
     scene.add(pivot3);
-    //scene.add(pivot4);
+    scene.add(pivot4);
 
-  //renders everything
-  render();
+    //renders everything
+    render();
 
     function render() {
         stats.update();
@@ -580,19 +594,27 @@ function init() {
             pivot.rotation.y += 0.006;
         }
 
-        if (pivot2) { 
+        if (pivot2) {
             pivot2.rotation.y += 0.004;
         }
-        if (pivot3) { 
+        if (pivot3) {
             pivot3.position.x += 9;
             pivot3.position.z -= 9;
-            if(pivot3.position.x > 10000) {
-            pivot3.position.x = -3200;
-            pivot3.position.z = 3000;
+            if (pivot3.position.x > 10000) {
+                pivot3.position.x = -3200;
+                pivot3.position.z = 3000;
+
+                pivot4.position.x = -3320;
+                pivot4.position.z = 3080;
+                
             }
+            
 
         }
-
+        if (pivot4) {
+            pivot4.position.x += 9.5;
+            pivot4.position.z -= 9.5;
+        }
 
 
         if (isMobile == false || isMobile == true) {
@@ -601,7 +623,7 @@ function init() {
 
         webGLRenderer.clear();
 
-        
+
 
         // render using requestAnimationFrame
         // ball bouncing
@@ -617,7 +639,7 @@ function init() {
 
 
         //hobbies target moving
-        spotLight12.target.position.z = -110 + (-150 * Math.sin(step_light10/2));
+        spotLight12.target.position.z = -110 + (-150 * Math.sin(step_light10 / 2));
         spotLight12.target.position.y = 160 + (1.3 * Math.sin(step / 15));
 
 
