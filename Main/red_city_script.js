@@ -10,6 +10,8 @@ var AutoF = true;
 
 var mesh;
 
+var loading_pc = 0;
+
 init();
 
 
@@ -59,7 +61,7 @@ function init() {
         // called when loading is in progresses     
         function (xhr) {
             var total_sz = 87000000;
-            var loading_pc = (xhr.loaded / total_sz * 100);
+            loading_pc = (xhr.loaded / total_sz * 100);
             if (i == 0)
                 loading_pc = 0;
             console.log(loading_pc + '% loaded' + '   ' + i);
@@ -650,8 +652,16 @@ function init() {
         spotLight.target.position.x = 0 + (90 * Math.cos(step_light));
 
 
-
-
+        //shows % of loading progress
+        if (loading != 0) {
+            var num = loading_pc.toFixed(0);
+            if(num>90)
+            num = 100;
+            document.getElementById("control-output").innerHTML = num + '%/100%';
+            document.getElementById("control-output").style.color = 'black';
+            document.getElementById("control-output").style.fontSize = '36px';
+            document.getElementById("control-output").style.marginLeft = '6%';
+        }
         //    cube.rotation.y += 0.006;
 
         requestAnimationFrame(render);
@@ -698,8 +708,35 @@ function init() {
         document.getElementById("control-output").style.top = '0px';
 
 
+
+    }
+
+
+
+    //here is gonna be the loading screen
+    function loadingScreen(loading) {
+
+
+        //if loading is over kill div
+        if (loading == 0) {
+
+            
+        document.getElementById("control-output").style.position = 'absolute';
+        document.getElementById("control-output").style.fontFamily = 'Monospace';
+        document.getElementById("control-output").style.fontSize = '16px';
+        document.getElementById("control-output").style.fontWeight = 'bold';
+        document.getElementById("control-output").style.marginLeft = '35%';
+
+        document.getElementById("control-output").style.alignContent = 'center';
+        document.getElementById("control-output").style.top = '0px';
+        document.getElementById("control-output").style.left = '0px';
+            elem.parentNode.removeChild(elem);
+            document.getElementById("control-output").style.color = 'white';
+
+
         //sets control text
         if (isMobile == false)
+        
             document.getElementById("control-output").innerHTML = 'Move: [w][a][s][d] &nbsp;&nbsp;&nbsp;&nbsp; Elevation: [r][f] &nbsp;&nbsp;&nbsp;&nbsp; Tilt: [e][q]';
 
         //sets control text
@@ -710,18 +747,7 @@ function init() {
             if (loading == 0)
                 document.getElementById("control-output").style.color = 'white';
         }
-    }
 
-
-
-    //here is gonna be the loading screen
-    function loadingScreen(loading) {
-
-        //if loading is over kill div
-        if (loading == 0) {
-
-            elem.parentNode.removeChild(elem);
-            document.getElementById("control-output").style.color = 'white';
         }
 
     }
