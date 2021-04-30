@@ -5,12 +5,11 @@ var elem = document.getElementById("loading-output");
 
 // locks loading when reached 100
 var lock = false;
-
 var AutoF = true;
-
 var mesh;
-
 var loading_pc = 0;
+var objects = [];
+
 
 init();
 
@@ -22,7 +21,7 @@ function init() {
     const isMobile = (window.orientation !== undefined);
 
     var clock = new THREE.Clock();
-
+    var projector = new THREE.Projector();
 
 
     //loading is true by default
@@ -208,7 +207,6 @@ function init() {
     // EVERYTHING BELOW HERE ARE EXTRA MESH //////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////
     var step = 0;
-    var step_light9 = 0;
     var step_light = 0;
     var step_light10 = 0;
 
@@ -310,16 +308,16 @@ function init() {
     scene.add(spotLight11.target);
     spotLight11.target.updateMatrixWorld();
 
-        // add spotlight hobbies
-        var spotLight13 = new THREE.SpotLight(0xffffff, 10, 1200, 0.42);
-        spotLight13.position.set(320, 90, -200);
-        spotLight13.target.position.set(400, 400, 315);
-        scene.add(spotLight13);
-        scene.add(spotLight13.target);
-        spotLight13.target.updateMatrixWorld();
+    // add spotlight hobbies
+    var spotLight13 = new THREE.SpotLight(0xffffff, 10, 1200, 0.42);
+    spotLight13.position.set(320, 90, -200);
+    spotLight13.target.position.set(400, 400, 315);
+    scene.add(spotLight13);
+    scene.add(spotLight13.target);
+    spotLight13.target.updateMatrixWorld();
 
-   //    const spotLightHelper = new THREE.SpotLightHelper( spotLight13 );
-   //     scene.add( spotLightHelper );
+    //    const spotLightHelper = new THREE.SpotLightHelper( spotLight13 );
+    //     scene.add( spotLightHelper );
 
 
     // add ANIMATED spotlight hobbies
@@ -391,6 +389,10 @@ function init() {
     var R;
     var f16;
     var jet1;
+    var github;
+    var contact;
+    var bat;
+    var batman;
 
     //pictures for project building here#######################################
 
@@ -517,7 +519,13 @@ function init() {
     scene.add(tax4);
     scene.add(tax_banner);
 
+    red_cit_banner.userData = { URL: "https://github.com/Makaveliunit/red-city" };
+    coviddb_banner.userData = { URL: "https://github.com/WDLNPH/coviddb" };
+    tax_banner.userData = { URL: "https://github.com/Makaveliunit/tax_calc" };
 
+    objects.push(red_cit_banner);
+    objects.push(coviddb_banner);
+    objects.push(tax_banner);
 
 
     //creates a mesh a adds png on it
@@ -570,8 +578,24 @@ function init() {
                     jet1 = object;
                     pivot4.add(jet1);
                 }
-
-
+                if (object.material.name == "github") {
+                    github = object;
+                    github.userData = { URL: "https://github.com/Makaveliunit" };
+                    objects.push(github);
+                }
+                if (object.material.name == "contact") {
+                    contact = object;
+                    contact.userData = { URL: "mailto: b.a.rami@hotmail.com>Send Email" };
+                    objects.push(contact);
+                }
+                if (object.material.name == "bat") {
+                    bat = object;
+                    bat.material.transparent = true;
+                    bat.material.opacity = 1;
+                }
+                if (object.material.name == "batman") {
+                    batman = object;
+                }
             }
         }
     }
@@ -608,9 +632,9 @@ function init() {
 
                 pivot4.position.x = -3320;
                 pivot4.position.z = 3080;
-                
+
             }
-            
+
 
         }
         if (pivot4) {
@@ -655,19 +679,42 @@ function init() {
         //shows % of loading progress
         if (loading != 0) {
             var num = loading_pc.toFixed(0);
-            if(num>90)
-            num = 100;
-            document.getElementById("control-output").innerHTML = num + '%/100%';
+            if (num > 90)
+                num = 100;
+            document.getElementById("control-output").innerHTML = ' ' + num + '% | 100% ';
             document.getElementById("control-output").style.color = 'black';
             document.getElementById("control-output").style.fontSize = '36px';
             document.getElementById("control-output").style.marginLeft = '6%';
+            document.getElementById("control-output").style.border = 'thick solid black';
         }
         //    cube.rotation.y += 0.006;
 
+
+
+
+        document.addEventListener('mousedown', onDocumentMouseDown, false);
+
+
+
+        //click listener for URL of objects aka raycaster
+        function onDocumentMouseDown(event) {
+            event.preventDefault();
+            var vector = new THREE.Vector3((event.clientX / window.innerWidth) * 2 -
+                1, -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
+            projector.unprojectVector(vector, camera);
+            var raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position)
+                .normalize(), 0, 250);
+            var intersects = raycaster.intersectObjects(objects);
+            if (intersects.length > 0) {
+                window.open(intersects[0].object.userData.URL);
+            }
+        }
+
+
+
+
+
         requestAnimationFrame(render);
-
-
-
         webGLRenderer.render(scene, camera)
     }
 
@@ -697,7 +744,6 @@ function init() {
 
 
         document.getElementById("control-output").style.position = 'absolute';
-
         document.getElementById("control-output").style.color = 'transparent';
         document.getElementById("control-output").style.fontFamily = 'Monospace';
         document.getElementById("control-output").style.fontSize = '16px';
@@ -720,33 +766,34 @@ function init() {
         //if loading is over kill div
         if (loading == 0) {
 
-            
-        document.getElementById("control-output").style.position = 'absolute';
-        document.getElementById("control-output").style.fontFamily = 'Monospace';
-        document.getElementById("control-output").style.fontSize = '16px';
-        document.getElementById("control-output").style.fontWeight = 'bold';
-        document.getElementById("control-output").style.marginLeft = '35%';
+            document.getElementById("control-output").style.border = 'thick solid transparent';
+            document.getElementById("control-output").style.position = 'absolute';
+            document.getElementById("control-output").style.fontFamily = 'Monospace';
+            document.getElementById("control-output").style.fontSize = '20px';
+            document.getElementById("control-output").style.fontWeight = 'bold';
+            document.getElementById("control-output").style.marginLeft = '35%';
+            document.getElementById("control-output").style.borderBottom = 'thin solid white';
 
-        document.getElementById("control-output").style.alignContent = 'center';
-        document.getElementById("control-output").style.top = '0px';
-        document.getElementById("control-output").style.left = '0px';
+            document.getElementById("control-output").style.alignContent = 'center';
+            document.getElementById("control-output").style.top = '0px';
+            document.getElementById("control-output").style.left = '0px';
             elem.parentNode.removeChild(elem);
             document.getElementById("control-output").style.color = 'white';
 
 
-        //sets control text
-        if (isMobile == false)
-        
-            document.getElementById("control-output").innerHTML = 'Move: [w][a][s][d] &nbsp;&nbsp;&nbsp;&nbsp; Elevation: [r][f] &nbsp;&nbsp;&nbsp;&nbsp; Tilt: [e][q]';
+            //sets control text
+            if (isMobile == false)
 
-        //sets control text
-        if (isMobile == true) {
-            document.getElementById("control-output").style.marginLeft = '25%';
-            document.getElementById("control-output").style.fontSize = '12px';
-            document.getElementById("control-output").innerHTML = '[Long touch] Auto Forward: ' + AutoF + '<br>           Touch to auto-turn.';
-            if (loading == 0)
-                document.getElementById("control-output").style.color = 'white';
-        }
+                document.getElementById("control-output").innerHTML = 'Move: [w][a][s][d] &nbsp;&nbsp;|&nbsp;&nbsp; Elevation: [r][f] &nbsp;&nbsp;|&nbsp;&nbsp; Tilt: [e][q]';
+
+            //sets control text
+            if (isMobile == true) {
+                document.getElementById("control-output").style.marginLeft = '25%';
+                document.getElementById("control-output").style.fontSize = '12px';
+                document.getElementById("control-output").innerHTML = '[Long touch] Auto Forward: ' + AutoF + '<br>           Touch to auto-turn.';
+                if (loading == 0)
+                    document.getElementById("control-output").style.color = 'white';
+            }
 
         }
 
