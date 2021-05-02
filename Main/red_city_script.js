@@ -623,7 +623,24 @@ function init() {
         if (pivot2) {
             pivot2.rotation.y += 0.004;
         }
+        if (pivot3) {
+            pivot3.position.x += 9;
+            pivot3.position.z -= 9;
+            if (pivot3.position.x > 10000) {
+                pivot3.position.x = -3200;
+                pivot3.position.z = 3000;
 
+                pivot4.position.x = -3320;
+                pivot4.position.z = 3080;
+
+            }
+
+
+        }
+        if (pivot4) {
+            pivot4.position.x += 9.5;
+            pivot4.position.z -= 9.5;
+        }
 
 
         if (isMobile == false || isMobile == true) {
