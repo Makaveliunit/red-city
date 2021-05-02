@@ -59,7 +59,7 @@ function init() {
         //loading = loading %
         // called when loading is in progresses     
         function (xhr) {
-            var total_sz = 87000000;
+            var total_sz = 70000000;
             loading_pc = (xhr.loaded / total_sz * 100);
             if (i == 0)
                 loading_pc = 0;
@@ -372,6 +372,8 @@ function init() {
     pivot2.position.y = 160;
     pivot2.position.z = -66;
 
+
+    /*
     var pivot3 = new THREE.Object3D();
     pivot3.position.x = -3200;
     pivot3.position.y = 150;
@@ -383,7 +385,7 @@ function init() {
     pivot4.position.y = 163;
     pivot4.position.z = 3080;
     pivot4.rotation.y = 7 / 4 * Math.PI;
-
+    */
 
     var pc_chair;
     var R;
@@ -570,6 +572,7 @@ function init() {
                     R = object;
                     pivot2.add(R);
                 }
+                /*
                 if (object.material.name == "f16") {
                     f16 = object;
                     pivot3.add(f16);
@@ -578,6 +581,7 @@ function init() {
                     jet1 = object;
                     pivot4.add(jet1);
                 }
+                */
                 if (object.material.name == "github") {
                     github = object;
                     github.userData = { URL: "https://github.com/Makaveliunit" };
@@ -588,6 +592,7 @@ function init() {
                     contact.userData = { URL: "mailto: b.a.rami@hotmail.com>Send Email" };
                     objects.push(contact);
                 }
+                /*
                 if (object.material.name == "bat") {
                     bat = object;
                     bat.material.transparent = true;
@@ -596,6 +601,7 @@ function init() {
                 if (object.material.name == "batman") {
                     batman = object;
                 }
+                */
             }
         }
     }
@@ -606,8 +612,10 @@ function init() {
     // pivot.add(pc_chair);
     scene.add(pivot);
     scene.add(pivot2);
+    /*
     scene.add(pivot3);
     scene.add(pivot4);
+    */
 
     //renders everything
     render();
@@ -623,6 +631,8 @@ function init() {
         if (pivot2) {
             pivot2.rotation.y += 0.004;
         }
+
+        /*
         if (pivot3) {
             pivot3.position.x += 9;
             pivot3.position.z -= 9;
@@ -642,6 +652,7 @@ function init() {
             pivot4.position.z -= 9.5;
         }
 
+        */
 
         if (isMobile == false || isMobile == true) {
             flyControls.update(delta);
@@ -686,6 +697,12 @@ function init() {
             document.getElementById("control-output").style.fontSize = '36px';
             document.getElementById("control-output").style.marginLeft = '6%';
             document.getElementById("control-output").style.border = 'thick solid black';
+            if(isMobile){
+                document.getElementById("control-output").style.fontSize = '25px';
+                document.getElementById("control-output").style.marginLeft = '30%';    
+                document.getElementById("control-output").style.border = '2px solid black';
+            }
+
         }
         //    cube.rotation.y += 0.006;
 
